@@ -1,37 +1,46 @@
-//Player then checks for a Option. They are No Play, Ladder or Snake. - Use ((RANDOM)) to check for Options
+//Repeat till the Player reaches the winning position 100.
+
 
 import java.util.Scanner;
 
-public class SnakeAndLadder{
+public class SnakeAndLadder {
+
+    public static final int WINNING_POSITION = 100;
+
     public static void main(String[] args) {
         int startPosition = 0;
-        System.out.println("Enter your name-- ");
+        System.out.println("Enter your name: ");
         Scanner sc = new Scanner(System.in);
         String Player_Name = sc.next();
 
-        int dieRoll = (int) (Math.floor(Math.random() * 10) % 6);
-        System.out.println("Dice Roll number --" + dieRoll);
+        while (WINNING_POSITION > startPosition) {
 
-        int check = (int) (Math.floor(Math.random() * 10) % 3);
+            int dieRoll = (int) (Math.floor(Math.random() * 10) % 6 + 1);
+            System.out.println("Dice Roll number :" + dieRoll);
 
-        switch (check)
+            int check = (int) (Math.floor(Math.random() * 10) % 3);
 
-        {
-            case 0:
-                System.out.println("Snake");
-                startPosition = dieRoll;
-                break;
+            switch (check) {
+                case 0:
+                    System.out.println("No Play");
+                    startPosition += 0;
+                    break;
 
-            case 1:
-                System.out.println("Ladder");
-                startPosition = dieRoll;
-                break;
+                case 1:
+                    System.out.println("Ladder:" + " + " + dieRoll);
+                    startPosition += dieRoll;
+                    break;
 
-            default:
-                System.out.println("NO PLAY");
-                startPosition = 0;
+                default:
+                    System.out.println("Snake : " + " - " + dieRoll);
+                    startPosition += dieRoll;
+
+
+            }
+
         }
-        System.out.println(" Player " + Player_Name + " On Position :" + startPosition);
+
+        System.out.println("Player " + Player_Name + " On Position :" + startPosition);
 
 
     }
